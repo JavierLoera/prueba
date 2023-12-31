@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Index from './pages/Index';
+import Page404 from './pages/Page404';
+import 'react-toastify/dist/ReactToastify.css';
+import { PokemonApi } from './pages/PokemonApi';
+import Navbar from './components/Navbar';
+import MyDocument from './pages/VistaPokemonPdf';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar></Navbar>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/pokemon-api" element={<PokemonApi />} />
+        <Route path="/pdf-pokemon/:id" element={<MyDocument />} />
+        <Route path='*' element={<Page404 />} />
+      </Routes>
+    </BrowserRouter >
   );
 }
 
